@@ -12,10 +12,13 @@
 make run
 ```
 
+... wait for server and point your browser to https://localhost:4848/. (Accept the insecure certificate :/)
+
 The makefile downloads glassfish 3.1.2.2 and converts it to a tgz. The Dockerfile
 is based on a jdk8 runtime and contains a fix for the osgi configuration of glassfish
 so it can start properly with jdk8. This glassfish version is built for jdk7. 
-Additionally insecure tls algorithms will be reenabled to make the admin console work.
+
+Additionally insecure tls algorithms must be reenabled to make the admin console work.
 
 The fix is based on:
 
