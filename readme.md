@@ -14,22 +14,23 @@ make run
 
 ... wait for server and point your browser to https://localhost:4848/. (Accept the insecure certificate :/)
 
-The makefile downloads glassfish 3.1.2.2 and converts it to a tgz. The Dockerfile
-is based on a jdk8 runtime and contains a fix for the osgi configuration of glassfish
-so it can start properly with jdk8. This glassfish version is built for jdk7. 
+The makefile downloads glassfish 3.1.2.2, applies the following patches and converts it to a tgz:
 
-Additionally insecure tls algorithms must be reenabled to make the admin console work.
+* fix osgi config glassfish3/glassfish/config/osgi.properties to run with jdk 8
+
+```
+jre-1.8=${jre-1.7}
+```
+
+* replace asm-all 3.3 with 5.2 (which is jdk 8 class file format ready) in glassfish3/glassfish/modules/asm-all-repackaged.jar
+
+On container start insecure tls algorithms will be be reenabled to make the admin console work.
 
 The fix is based on:
 
 * [JDK issue](https://bugs.openjdk.java.net/browse/JDK-8020071)
 * [stackoverflow thread about gf3 on jdk8](https://stackoverflow.com/questions/22462936/will-it-be-possible-to-use-java-8-on-glassfish-3)
-
-## Caveats
-
-So glassfish runs on jdk8, but still is not capable of loading java 8 classes due to
-[missing java 8 class file format support in objectweb asm](https://itqna.net/questions/12911/error-making-application-deploy-glassfish-orgobjectwebasmcla).
-The culprit seems to be located at /opt/glassfish3/glassfish/modules/asm-all-repackaged.jar.
+* [missing java 8 class file format support in objectweb asm](https://itqna.net/questions/12911/error-making-application-deploy-glassfish-orgobjectwebasmcla)
 
 ## License
 Copyright (c) 2022 by [Cornelius Buschka](https://github.com/cbuschka).
