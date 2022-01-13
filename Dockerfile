@@ -6,8 +6,9 @@ ENV PATH=${PATH}:${GLASSFISH_INSTALL_DIR}/bin
 ENV GLASSFISH_ADMIN_PASSWORD=
 
 RUN useradd -u 1000 app -m -d /app
-ADD generated/glassfish-3.1.2.2-patched.tgz /opt
+ADD --chown=app:app generated/glassfish-3.1.2.2-patched.tgz /opt
 ADD assets/ /
+COPY generated/example.ear /opt/glassfish3/glassfish/domains/domain1/autodeploy/
 
 RUN chown app:app -R /opt/glassfish3 /usr/local/bin/run-gf.sh && \
 	echo -e '\njdk.tls.disabledAlgorithms=\n' >> $(dirname `which java`)/../jre/lib/security/java.security
