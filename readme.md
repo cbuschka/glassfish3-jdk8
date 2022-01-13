@@ -1,5 +1,28 @@
 # A dockerized glassfish 3.1.2.2 on jdk8
 
+THIS DOES NOT WORK!
+
+```
+[#|2022-01-13T20:33:22.342+0000|SEVERE|glassfish3.1.2|javax.enterprise.system.core.com.sun.enterprise.v3.server|_ThreadID=82;_ThreadName=Thread-40;|Exception while deploying the app [__admingui]|#]
+
+[#|2022-01-13T20:33:22.343+0000|SEVERE|glassfish3.1.2|javax.enterprise.system.core.com.sun.enterprise.v3.server|_ThreadID=82;_ThreadName=Thread-40;|Implementing class
+java.lang.IncompatibleClassChangeError: Implementing class
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:756)
+	at org.apache.felix.framework.BundleWiringImpl$BundleClassLoader.findClass(BundleWiringImpl.java:2128)
+	at org.apache.felix.framework.BundleWiringImpl.findClassOrResourceByDelegation(BundleWiringImpl.java:1432)
+	at org.apache.felix.framework.BundleWiringImpl.access$400(BundleWiringImpl.java:72)
+	at org.apache.felix.framework.BundleWiringImpl$BundleClassLoader.loadClass(BundleWiringImpl.java:1843)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:351)
+	at org.glassfish.hk2.classmodel.reflect.ParsingContext$Builder.build(ParsingContext.java:161)
+	at com.sun.enterprise.v3.server.ApplicationLifecycle.getDeployableTypes(ApplicationLifecycle.java:505)
+	at com.sun.enterprise.v3.server.ApplicationLifecycle.deploy(ApplicationLifecycle.java:351)
+	at com.sun.enterprise.v3.server.ApplicationLoaderService.processApplication(ApplicationLoaderService.java:375)
+	at com.sun.enterprise.v3.admin.adapter.InstallerThread.load(InstallerThread.java:210)
+	at com.sun.enterprise.v3.admin.adapter.InstallerThread.run(InstallerThread.java:108)
+|#]
+```
+
 ## Prerequisites
 
 * GNU make
