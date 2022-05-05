@@ -1,6 +1,6 @@
 PROJECT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
-run:
+run:	build
 	@cd ${PROJECT_DIR}
 	docker run --init -m 8g --name gf3-server --rm -ti \
 		-p 4848:4848 -p 8080:8080 -p 8181:8181 \
@@ -8,10 +8,9 @@ run:
 		glassfish3-jdk8:local
 
 build-ear:
-	@cd ${PROJECT_DIR}
-	cd example && \
+	@cd ${PROJECT_DIR}/example && \
 	mvn package --batch-mode && \
-	cd .. && \
+	cd ${PROJECT_DIR} && \
 	cp example/ear/target/example.ear ${PROJECT_DIR}/generated/
 
 build:	build-ear patch-glassfish
