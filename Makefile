@@ -9,7 +9,7 @@ run:	build
 
 build-ear:
 	@cd ${PROJECT_DIR}/example && \
-	mvn package --batch-mode && \
+	mvn clean package --batch-mode && \
 	cd ${PROJECT_DIR} && \
 	cp example/ear/target/example.ear ${PROJECT_DIR}/generated/
 
